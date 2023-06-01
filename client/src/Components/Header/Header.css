@@ -1,0 +1,36 @@
+.header{
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.img-fluid {
+    width: 400px;
+}
+
+.nav-link {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: black;
+    margin: 20px 0px 20px 15px;
+    padding: 6px 20px;
+    border-radius: 5.84px;
+    width: 140px;
+    background-color: aquamarine;
+}
+
+.nav-link:hover {
+    background-color: aquamarine;
+}
+
+.btn{
+    margin: 20px 0px 20px 15px;
+    padding: 6px 20px;
+    width: 140px;
+    font-weight: 500;
+}

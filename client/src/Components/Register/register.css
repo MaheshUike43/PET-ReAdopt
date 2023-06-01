@@ -1,0 +1,15 @@
+.regform{
+    background-color: seashell;
+}
+
+.box{
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.404);
+    padding: 25px;
+    margin: 50px 0px;
+    border-radius: 10px;
+}
+
+label{
+    margin-top: 10px;
+}
