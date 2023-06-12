@@ -1,10 +1,34 @@
-import React from 'react'
-import './Header.css'
+import React, { useEffect, useState } from 'react'
+import '../Header/Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function Header() {
 
   let navigate = useNavigate();
+
+  const [isLoggedIn, SetLoggedIn] = useState(false);
+
+  const checkedLogin = () => {
+    const userLogged = localStorage.getItem("user");
+    if (userLogged) {
+      SetLoggedIn(true);
+    } else {
+      SetLoggedIn(false);
+    }
+  }
+
+  useEffect(() => {
+    checkedLogin()
+  })
+
+  const SignIn = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("user");
+      navigate("/")
+    } else {
+      navigate(`/login`);
+    }
+  }
 
   return (
     <div className='header container'>
@@ -21,7 +45,9 @@ export default function Header() {
               <Link className="nav-link" to='/adopt'>Adopt</Link>
               <Link className="nav-link" to='/rescue'>Rescue</Link>
               <Link className="nav-link" to='/contact'>Contact</Link>
-              <button className='btn btn-primary' onClick={() => navigate(`/login`)}>LOGIN</button>
+              <button className='btn btn-primary' onClick={() => SignIn()}>
+                {isLoggedIn ? "Log Out" : "Log In"}
+              </button>
             </div>
           </div>
         </nav>

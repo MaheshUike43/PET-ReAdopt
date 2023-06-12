@@ -2,6 +2,6 @@
     border-top: 2px solid black;
 }
 
-.card{
-    min-height: 711px;
+#pet-img{
+    height: 250px;
 }

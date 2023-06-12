@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './register.css';
+import '../Register/register.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,13 +10,14 @@ export default function Register() {
     name: '',
     email: '',
     password: '',
+    cpassword: '',
     phone_number: '',
     address: ''
   });
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { name, email, password, phone_number, address } = formData;
+  const { name, email, password, cpassword, phone_number, address } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,12 +26,17 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(password!==cpassword){
+      alert("Password not match")
+    }
+
     try {
       await axios.post('http://localhost:5000/register', formData);
       setFormData({
         name: '',
         email: '',
         password: '',
+        cpassword: '',
         phone_number: '',
         address: ''
       });
@@ -45,9 +51,9 @@ export default function Register() {
   };
 
   return (
-    <div className='regform container'>
+    <div className='mt-1 regform container'>
       <form className='row justify-content-center' onSubmit={handleSubmit}>
-        <div className='box'>
+        <div className='box1'>
           <h1>User Registration</h1>
           <label htmlFor='name' className='form-label'>
             Name
@@ -83,12 +89,30 @@ export default function Register() {
               id='password'
               className='form-control'
               value={password}
+              minLength={8}
+              maxLength={20}
               onChange={handleChange}
               required
             />
             <span className='password-toggle py-2 px-3' onClick={togglePasswordVisibility}>
               <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
             </span>
+          </div>
+          <label htmlFor='cpassword' className='form-label'>
+            Confirm Password
+          </label>
+          <div className='password-input d-flex'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name='cpassword'
+              id='cpassword'
+              className='form-control'
+              value={cpassword}
+              minLength={8}
+              maxLength={20}
+              onChange={handleChange}
+              required
+            />
           </div>
           <label htmlFor='phone_number' className='form-label'>
             Mobile Number
@@ -99,6 +123,7 @@ export default function Register() {
             id='phone_number'
             className='form-control'
             value={phone_number}
+            maxLength={10}
             onChange={handleChange}
             required
           />

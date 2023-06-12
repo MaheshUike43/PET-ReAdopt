@@ -1,10 +1,10 @@
-.regform{
+.addpetform{
     background-color: seashell;
     border-top: 2px solid black;
 }
 
-.box1{
-    width: 40%;
+.box2{
+    width: 50%;
     background-color: rgba(0, 0, 0, 0.322);
     padding: 25px;
     margin: 50px 0px;

@@ -1,10 +1,11 @@
 .loginform{
     background-color: seashell;
+    border-top: 2px solid black;
 }
 
 .box{
     width: 40%;
-    background-color: rgba(255, 0, 0, 0.404);
+    background-color: rgba(0, 0, 0, 0.322);
     padding: 25px;
     margin: 50px 0px;
     border-radius: 10px;
@@ -16,5 +17,5 @@ label{
 
 #ac{
     position: relative;
-    right: -145px;
+    right: -125px;
 }

@@ -1,29 +1,25 @@
 import express from "express";
-import adoptReqModel from '../models/adoptReqModel.js'
+import adoptRequest from "../controllers/Adopt/adoptRequest.js";
+import updateReq from "../controllers/Adopt/updateReq.js";
+import adoptReqDetials from "../controllers/Adopt/getRequest.js";
+import allRequest from "../controllers/Adopt/allRequest.js";
+import deleteReq from "../controllers/Adopt/deleteReq.js";
 
 const Request = express.Router()
 
 //Adoption Request
-Request.post("/adopt-request", async (req, res) => {
-    try {
-      const { pet_id, user_id } = req.body;
-  
-      if (!pet_id) {
-        return res.status(400).send({ success: false, message: "Please provide pet ID" });
-      }
-      if (!user_id) {
-        return res.status(400).send({ success: false, message: "Please provide user ID" });
-      }
-  
-      // CREATE NEW ADOPTION REQUEST
-      const newRequest = { pet_id, user_id };
-      const adoptionRequest = await adoptReqModel.create(newRequest);
-  
-      res.status(200).send({ success: true, message: "Adoption request created successfully", adoptionRequest });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({ success: false, message: "Error creating adoption request" });
-    }
-  })
+Request.post("/adopt-request", adoptRequest)
+
+//View All Request
+Request.get("/adopt-request/allreq", allRequest)
+
+//View Request
+Request.get("/adopt-request/:id", adoptReqDetials)
+
+//Update Request
+Request.put("/adopt-request/update/:id", updateReq)
+
+//Delete Request
+Request.delete("/adopt-request/delete/:id", deleteReq)
 
 export default Request;

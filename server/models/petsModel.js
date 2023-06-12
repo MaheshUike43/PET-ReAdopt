@@ -4,6 +4,7 @@ const petSchema = new mongoose.Schema({
     pet_type: {
         type: String,
         required: true,
+        enum: ["Cat", "Dog", "Cow", "Bird", "Other"]
     },
     pet_name: {
         type: String,
@@ -19,7 +20,7 @@ const petSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: ["male", "female"],
+        enum: ["Male", "Female"],
         required: true,
     },
     photo: {
@@ -32,7 +33,7 @@ const petSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["available", "adopted"],
+        enum: ["Available", "Adopted", "Booked"],
         required: true,
     },
 },
