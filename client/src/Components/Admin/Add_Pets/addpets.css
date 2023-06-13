@@ -1,0 +1,16 @@
+.addpetform{
+    background-color: seashell;
+    border-top: 2px solid black;
+}
+
+.box2{
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.322);
+    padding: 25px;
+    margin: 50px 0px;
+    border-radius: 10px;
+}
+
+label{
+    margin-top: 10px;
+}

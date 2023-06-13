@@ -18,7 +18,7 @@ const userLogin = async (req, res) => {
     }
 
     const token = await user.generateAuthToken();
-
+    
     res.json({ success: true, message: 'User Logged In Successfully', user });
   } catch (error) {
     console.error(error);

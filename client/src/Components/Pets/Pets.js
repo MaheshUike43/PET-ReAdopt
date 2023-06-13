@@ -12,7 +12,7 @@ export default function Pets() {
     const displayPetsDetails = async () => {
       try {
         const response = await axios.get("http://localhost:5000/allPetsDetail");
-        const petsData = response.data.pet;
+        const petsData = response.data.allpets;
         setPets(petsData); // Update the state with the fetched pets data
       } catch (error) {
         console.error(error);
