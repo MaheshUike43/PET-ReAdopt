@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../Header/header.css'
+import './header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from './pet-logo.png'
 
