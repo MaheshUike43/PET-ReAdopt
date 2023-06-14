@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './header.css'
+import './Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from './pet-logo.png'
 
@@ -34,9 +34,9 @@ export default function Header() {
   return (
     <div className='header container'>
       <div className='row'>
-        <div className='col-lg-3'>
+        <Link className='col-lg-3' to='/'>
           <img className='img-fluid m-0' id='logo-img' src={logo} alt="..." />
-        </div>
+        </Link>
         <div className='col-lg-9 float-end'>
           <nav className="navbar navbar-expand-lg" id='menu'>
             <div className="navbar-nav">
