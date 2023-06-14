@@ -8,8 +8,10 @@ import Contact from './Components/Contact/Contact';
 import Login from './Components/Login/Login';
 import AddPets from './Components/Add_Pets/AddPets';
 import Register from './Components/Register/Register';
+import ViewPet from './Components/ViewPet/ViewPet';
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -22,6 +24,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/viewpet' element={<ViewPet />} />
         </Routes>
       </div>
     </BrowserRouter>

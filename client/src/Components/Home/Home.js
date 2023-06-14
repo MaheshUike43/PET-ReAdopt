@@ -8,7 +8,7 @@ export default function Home() {
       <div className='container'>
         <div className='row justify-content-center'>
             <img className='img-fluid' src={image} id='home-img' alt="..." />
-            <h1 className='slogan'>"Open Your Heart, Open Your Home: Adopt a Rescue Pet"</h1>
+            <h1 className='slogan'>Open Your Heart, Open Your Home <br /> Adopt a Rescue Pet</h1>
         </div>
       </div>
     </div>

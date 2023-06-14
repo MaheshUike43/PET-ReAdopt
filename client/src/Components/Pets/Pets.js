@@ -30,31 +30,27 @@ export default function Pets() {
   };
 
   return (
-    <div className="mt-1 pets container bg-light">
-      <h1 className='pt-4 fw-bolder text-center'>Pets for Adoption</h1>
-      <div className="row">
-        <div className="col-lg-12 mb-4">
-          <div className="filter-container">
-            <label htmlFor='petTypeSelect' className='form-label'>
-              Select Pet Type:
-            </label>
-            <select
-              className="form-select"
-              id="petTypeSelect"
-              value={selectedPetType}
-              onChange={handlePetTypeChange}
-            >
-              <option value="">All</option>
-              <option value="Cat">Cat</option>
-              <option value="Dog">Dog</option>
-              <option value="Cow">Cow</option>
-              <option value="Bird">Bird</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
+    <div className="mt-1 pets container">
+      <h1 className='pt-4 fw-bolder text-center' id='title'>Pets for Adoption</h1>
+      <div className="filter-container">
+        <label htmlFor='petTypeSelect' className='form-label'>
+          Select Pet Type:
+        </label>
+        <select
+          className="form-select"
+          id="petTypeSelect"
+          value={selectedPetType}
+          onChange={handlePetTypeChange}
+        >
+          <option value="">All</option>
+          <option value="Cat">Cat</option>
+          <option value="Dog">Dog</option>
+          <option value="Cow">Cow</option>
+          <option value="Bird">Bird</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
-      <div className="row">
+      <div className="row mt-3">
         {filteredPets.map((pet, index) => {
           return (
             <div className="col-lg-4 mb-4" key={pet._id}>
@@ -66,7 +62,8 @@ export default function Pets() {
                   <p className="card-text"><b>Age:  </b> {pet.age}</p>
                   <p className="card-text"><b>Gender:  </b> {pet.gender}</p>
                   <p className="card-text"><b>Status:  </b> {pet.status}</p>
-                  <button className="btn btn-primary m-0" onClick={() => navigate(`/adopt?petid=${pet._id}`)}>ADOPT</button>
+                  <button id='btn-adopt' className="btn m-0" onClick={() => navigate(`/adopt?petid=${pet._id}`)}>ADOPT</button>
+                  <button id='btn-view' className="btn" onClick={() => navigate(`/viewpet?petid=${pet._id}`)}>VIEW</button>
                 </div>
               </div>
             </div>

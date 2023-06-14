@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Register/register.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,6 +16,7 @@ export default function Register() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const { name, email, password, cpassword, phone_number, address } = formData;
 
@@ -41,6 +42,7 @@ export default function Register() {
         address: ''
       });
       alert('User Registration Successful');
+      navigate('/login')
     } catch (error) {
       alert('Email already registered');
     }

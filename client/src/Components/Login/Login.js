@@ -15,18 +15,24 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:5000/login', {
         email,
         password,
       });
-
+  
       if (response.data.success) {
         window.alert('Login Successful..!');
         // Store the user login details in local storage
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        navigate('/');
+  
+        // Check if the user is an admin
+        if (response.data.user.isAdmin) {
+          navigate('/addpets'); // Redirect to the admin menu
+        } else {
+          navigate('/'); // Redirect to the user menu
+        }
       } else {
         window.alert('Invalid Credentials');
       }
@@ -35,6 +41,7 @@ export default function Login() {
       alert('Error logging in. Please try again.');
     }
   };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
