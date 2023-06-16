@@ -22,12 +22,13 @@ export default function Register() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(password!==cpassword){
+    if (password !== cpassword) {
       alert("Password not match")
     }
 
@@ -53,10 +54,10 @@ export default function Register() {
   };
 
   return (
-    <div className='mt-1 regform container'>
+    <div className='regform container'>
       <form className='row justify-content-center' onSubmit={handleSubmit}>
         <div className='box1'>
-          <h1>User Registration</h1>
+          <h1 id='reg-title'>Registration</h1>
           <label htmlFor='name' className='form-label'>
             Name
           </label>
@@ -69,66 +70,74 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-          <label htmlFor='email' className='form-label'>
-            Email
-          </label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            className='form-control'
-            value={email}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor='password' className='form-label'>
-            Password
-          </label>
-          <div className='password-input d-flex'>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name='password'
-              id='password'
-              className='form-control'
-              value={password}
-              minLength={8}
-              maxLength={20}
-              onChange={handleChange}
-              required
-            />
-            <span className='password-toggle py-2 px-3' onClick={togglePasswordVisibility}>
-              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-            </span>
+
+          <div className='row'>
+            <div className='col-lg-6'>
+              <label htmlFor='email' className='form-label'>
+                Email
+              </label>
+              <input
+                type='email'
+                name='email'
+                id='email'
+                className='form-control'
+                value={email}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='password' className='form-label'>
+                Password
+              </label>
+              <div className='password-input d-flex'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name='password'
+                  id='password'
+                  className='form-control'
+                  value={password}
+                  minLength={8}
+                  maxLength={20}
+                  onChange={handleChange}
+                  required
+                />
+                <span className='password-toggle py-2 px-3' onClick={togglePasswordVisibility}>
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
+              </div>
+            </div>
+            <div className='col-lg-6'>
+              <label htmlFor='phone_number' className='form-label'>
+                Mobile Number
+              </label>
+              <input
+                type='tel'
+                name='phone_number'
+                id='phone_number'
+                className='form-control'
+                value={phone_number}
+                maxLength={10}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor='cpassword' className='form-label'>
+                Confirm Password
+              </label>
+              <div className='password-input d-flex'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name='cpassword'
+                  id='cpassword'
+                  className='form-control'
+                  value={cpassword}
+                  minLength={8}
+                  maxLength={20}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
           </div>
-          <label htmlFor='cpassword' className='form-label'>
-            Confirm Password
-          </label>
-          <div className='password-input d-flex'>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name='cpassword'
-              id='cpassword'
-              className='form-control'
-              value={cpassword}
-              minLength={8}
-              maxLength={20}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <label htmlFor='phone_number' className='form-label'>
-            Mobile Number
-          </label>
-          <input
-            type='tel'
-            name='phone_number'
-            id='phone_number'
-            className='form-control'
-            value={phone_number}
-            maxLength={10}
-            onChange={handleChange}
-            required
-          />
+
           <label htmlFor='address' className='form-label'>
             Address
           </label>
@@ -140,9 +149,14 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-          <button type='submit' id='submitBtn' className='btn btn-success m-0 mt-4 w-100'>
-            Sign Up
-          </button>
+          <div className='d-flex justify-content-between'>
+            <button type='submit' id='regBtn' className='btn m-0 mt-4 me-3 w-50'>
+              Sign up
+            </button>
+            <button id='closeBtn' onClick={() => navigate('/login')} className='btn m-0 ms-3 mt-4 w-50'>
+              Cancel
+            </button>
+          </div>
           <div className='mt-2'>
             Already registered?
             <div>

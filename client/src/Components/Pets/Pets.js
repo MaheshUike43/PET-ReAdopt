@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../Pets/Pets.css'
+import '../Pets/Pets.css';
 
 export default function Pets() {
   const navigate = useNavigate();
@@ -22,18 +22,21 @@ export default function Pets() {
     displayPetsDetails();
   }, []);
 
+
   // Filter pets based on the selected pet type
-  const filteredPets = selectedPetType ? pets.filter(pet => pet.pet_type === selectedPetType) : pets;
+  const filteredPets = selectedPetType ? pets.filter((pet) => pet.pet_type === selectedPetType) : pets;
 
   const handlePetTypeChange = (e) => {
     setSelectedPetType(e.target.value);
   };
 
   return (
-    <div className="mt-1 pets container">
-      <h1 className='pt-4 fw-bolder text-center' id='title'>Pets for Adoption</h1>
+    <div className="pets container">
+      <h1 className="pt-4 fw-bolder text-center" id="title">
+        Pets for Adoption
+      </h1>
       <div className="filter-container">
-        <label htmlFor='petTypeSelect' className='form-label'>
+        <label htmlFor="petTypeSelect" className="form-label">
           Select Pet Type:
         </label>
         <select
@@ -51,24 +54,51 @@ export default function Pets() {
         </select>
       </div>
       <div className="row mt-3">
-        {filteredPets.map((pet, index) => {
-          return (
-            <div className="col-lg-4 mb-4" key={pet._id}>
-              <div className="card">
-                <img src={pet.photo} className="card-img-top img-fluid px-3 pt-3" alt="..." id='pet-img' />
-                <div className="card-body">
-                  <h4 className="card-title">{pet.pet_name}</h4>
-                  <p className="card-text"><b>Breed: </b> {pet.breed}</p>
-                  <p className="card-text"><b>Age:  </b> {pet.age}</p>
-                  <p className="card-text"><b>Gender:  </b> {pet.gender}</p>
-                  <p className="card-text"><b>Status:  </b> {pet.status}</p>
-                  <button id='btn-adopt' className="btn m-0" onClick={() => navigate(`/adopt?petid=${pet._id}`)}>ADOPT</button>
-                  <button id='btn-view' className="btn" onClick={() => navigate(`/viewpet?petid=${pet._id}`)}>VIEW</button>
+        {filteredPets.map((pet, index) => (
+          <div className="col-lg-4 mb-4" key={pet._id}>
+            <div className="card">
+              <img src={pet.photo} className="card-img-top img-fluid px-3 pt-3" alt="..." id="pet-img" />
+              <div className="card-body">
+                <h4 className="card-title">{pet.pet_name}</h4>
+                <p className="card-text">
+                  <b>Breed: </b> {pet.breed}
+                </p>
+                <p className="card-text">
+                  <b>Age: </b> {pet.age}
+                </p>
+                <p className="card-text">
+                  <b>Gender: </b> {pet.gender}
+                </p>
+                <p className="card-text">
+                  <b>Status: </b> {pet.status}
+                </p>
+                <div className="d-flex">
+                  <button
+                    id="btn-adopt"
+                    className="btn ms-0"
+                    onClick={() => navigate(`/adopt?adoptpetid=${pet._id}`)}
+                  >
+                    ADOPT
+                  </button>
+                  <button
+                    id="btn-view"
+                    className="btn"
+                    onClick={() => navigate(`/viewpet?viewpetid=${pet._id}`)}
+                  >
+                    VIEW
+                  </button>
+                  <button
+                    id="btn-update"
+                    className="btn"
+                    onClick={() => navigate(`/updatepet?petid=${pet._id}`)}
+                  >
+                    UPDATE
+                  </button>
                 </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function ViewPet() {
         const petDetails = async () => {
             try {
                 const fetchPet = await axios.get(
-                    `http://localhost:5000/petsDetail/${searchParams.get('petid')}`
+                    `http://localhost:5000/petsDetail/${searchParams.get('viewpetid')}`
                 );
                 setPet(fetchPet.data.pet);
             } catch (error) {

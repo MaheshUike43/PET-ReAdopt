@@ -8,10 +8,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ export default function Login() {
         if (response.data.user.isAdmin) {
           navigate('/addpets'); // Redirect to the admin menu
         } else {
-          navigate('/'); // Redirect to the user menu
+          navigate('/pets'); // Redirect to the user menu
         }
       } else {
         window.alert('Invalid Credentials');
@@ -49,10 +49,10 @@ export default function Login() {
 
   return (
     <div>
-      <div className="mt-1 loginform container">
+      <div className="container" id='loginform '>
         <form className="row justify-content-center" onSubmit={handleSubmit}>
           <div className="box">
-            <h1 className="">User Login</h1>
+            <h1 className="login-title">Login</h1>
             <label htmlFor="email" className="form-label">
               Email
             </label>
@@ -82,22 +82,16 @@ export default function Login() {
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
               </span>
             </div>
-            <button
-              type="submit"
-              id="submitBtn"
-              className="btn btn-success m-0 mt-4 w-100"
-            >
-              Log In
-            </button>
+            <button type="submit" id="loginBtn" className="btn m-0 mt-4 w-100">Log In</button>
             <div className="d-flex">
-              <div className="mt-2">
-                <Link to="/" className="text-danger">
+              <div className="col-lg-6 mt-2 justify-content-end">
+                <Link className="text-danger">
                   Forget Password
                 </Link>
               </div>
-              <div className="mt-2 d-flex flex-column align-items-end" id="ac">
+              <div className="col-lg-6 mt-2 d-flex flex-column text-end " >
                 I don't have an account
-                <div>
+                <div className=''>
                   <Link to="/register">Register Here</Link>
                 </div>
               </div>

@@ -38,7 +38,7 @@ export default function AddPets() {
     const petDetails = async () => {
       try {
         const fetchPet = await axios.get(
-          `http://localhost:5000/petsDetail/${searchParams.get('petid')}`
+          `http://localhost:5000/petsDetail/${searchParams.get('adoptpetid')}`
         );
         setPet(fetchPet.data.pet);
 

@@ -1,8 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 import jwt from "jsonwebtoken";
-
-const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
@@ -43,10 +41,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    tokens:{
-        type: Array,
-        required: true,
-      },
+    tokens: {
+      type: Array,
+      required: false,
+    },
   },
   { timestamps: true }
 );

@@ -15,7 +15,6 @@ export default function UpdatePet() {
                     `http://localhost:5000/petsDetail/${searchParams.get('petid')}`
                 );
                 setPet(response.data.pet);
-                // console.log(response.data.pet)
             } catch (error) {
                 console.log(error);
             }
@@ -30,9 +29,8 @@ export default function UpdatePet() {
         try {
             await axios.put(`http://localhost:5000/pet/update/${searchParams.get('petid')}`,
                 pet);
-            setPet(pet)
             alert('Updated Successfully');
-            //   navigate('/pets');
+              navigate('/pets');
         } catch (error) {
             console.log(error);
         }

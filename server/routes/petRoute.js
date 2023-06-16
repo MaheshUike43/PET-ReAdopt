@@ -24,7 +24,7 @@ petRoute.get("/petsDetail/:id", async (req, res) => {
     try {
         const pet = await petsModel.findById(req.params.id)
         if (pet) {
-            console.log(pet)
+            // console.log(pet)
             res.status(200).send({ success: true, message: "Pet Found", pet });
         } else {
             res.status(404).send({ success: false, message: "Pet Not Found" });
@@ -55,7 +55,7 @@ petRoute.put("/pet/update/:id", async (req, res) => {
             const updatePet = await petsModel.findByIdAndUpdate(req.params.id, {
                 $set: req.body,
             });
-            console.log(updatePet)
+            // console.log(updatePet)
             res.status(200).send({ success: true, message: "Pet is updated successfully", updatePet });
         } catch (error) {
             res.status(500).send({ success: false, message: "Pet Not Found" });

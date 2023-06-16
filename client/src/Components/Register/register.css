@@ -1,16 +1,28 @@
-.regform{
-    background-color: seashell;
-    border-top: 2px solid black;
+#reg-title{
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    font-size: 45px;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 .box1{
-    width: 40%;
-    background-color: rgba(0, 0, 0, 0.322);
+    width:50%;
+    background-color: rgba(135, 168, 37, 0.562);
     padding: 25px;
-    margin: 50px 0px;
+    margin-top: 25px;
+    margin-bottom: 50px;
     border-radius: 10px;
 }
 
 label{
     margin-top: 10px;
+}
+
+#regBtn{
+    background: #312c26;
+    color: white;
+}
+#closeBtn{
+    border: 1px solid black;
 }

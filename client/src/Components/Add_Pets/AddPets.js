@@ -67,98 +67,154 @@ export default function AddPets() {
     };
 
     return (
-        <div className="mt-1 addpetform abs container">
+        <div className="addpetform container">
             <form className='row justify-content-center' onSubmit={handleSubmit}>
                 <div className='box2'>
-                    <h1>Add New Pets For Adoption</h1>
-                    <label htmlFor='ptype' className='form-label'>
-                        Category
-                    </label>
-                    <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        id='ptype'
-                        name='pet_type'
-                        value={pet_type}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value='' disabled>
-                            Select Category
-                        </option>
-                        <option value="Cat">Cat</option>
-                        <option value="Dog">Dog</option>
-                        <option value="Cow">Cow</option>
-                        <option value="Bird">Bird</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <label htmlFor='pname' className='form-label'>
-                        Pet Name
-                    </label>
-                    <input
-                        type='text'
-                        name='pet_name'
-                        id='pname'
-                        className='form-control'
-                        value={pet_name}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label htmlFor='breed' className='form-label'>
-                        Breed
-                    </label>
-                    <input
-                        type='text'
-                        name='breed'
-                        id='breed'
-                        className='form-control'
-                        value={breed}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label htmlFor='age' className='form-label'>
-                        Age
-                    </label>
-                    <input
-                        type='text'
-                        name='age'
-                        id='age'
-                        className='form-control'
-                        value={age}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label htmlFor='gender' className='form-label'>
-                        Gender
-                    </label>
+                    <h1 id='newpettitle'>Add New Pets</h1>
                     <div className='d-flex'>
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="gender"
-                                id="flexRadioDefault1"
-                                value="Male"
-                                checked={gender === "Male"}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label m-0" htmlFor="flexRadioDefault1">
-                                Male
+                        <div className="col-lg-6">
+                            <label htmlFor='ptype' className='form-label'>
+                                Category
                             </label>
+                            <select
+                                className="form-select"
+                                aria-label="Default select example"
+                                id='ptype'
+                                name='pet_type'
+                                value={pet_type}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value='' disabled>
+                                    Select Category
+                                </option>
+                                <option value="Cat">Cat</option>
+                                <option value="Dog">Dog</option>
+                                <option value="Cow">Cow</option>
+                                <option value="Bird">Bird</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label htmlFor='breed' className='form-label'>
+                                Breed
+                            </label>
+                            <input
+                                type='text'
+                                name='breed'
+                                id='breed'
+                                className='form-control'
+                                value={breed}
+                                onChange={handleChange}
+                                required
+                            />
+                            <label htmlFor='gender' className='form-label'>
+                                Gender
+                            </label>
+                            <div className='d-flex'>
+                                <div className="form-check">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="gender"
+                                        id="flexRadioDefault1"
+                                        value="Male"
+                                        checked={gender === "Male"}
+                                        onChange={handleChange}
+                                    />
+                                    <label className="form-check-label m-0" htmlFor="flexRadioDefault1">
+                                        Male
+                                    </label>
+                                </div>
+                                <div className="form-check ms-3">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="gender"
+                                        id="flexRadioDefault2"
+                                        value="Female"
+                                        checked={gender === "Female"}
+                                        onChange={handleChange}
+                                    />
+                                    <label className="form-check-label m-0" htmlFor="flexRadioDefault2">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
-                        <div className="form-check ms-3">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="gender"
-                                id="flexRadioDefault2"
-                                value="Female"
-                                checked={gender === "Female"}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label m-0" htmlFor="flexRadioDefault2">
-                                Female
+                        <div className="col-lg-6 ps-4">
+                            <label htmlFor='pname' className='form-label'>
+                                Pet Name
                             </label>
+                            <input
+                                type='text'
+                                name='pet_name'
+                                id='pname'
+                                className='form-control'
+                                value={pet_name}
+                                onChange={handleChange}
+                                required
+                            />
+                            <label htmlFor='age' className='form-label'>
+                                Age
+                            </label>
+                            <input
+                                type='text'
+                                name='age'
+                                id='age'
+                                className='form-control'
+                                value={age}
+                                onChange={handleChange}
+                                required
+                            />
+
+
+                            <label htmlFor='status' className='form-label'>
+                                Adoption Status
+                            </label>
+                            <div className='d-flex'>
+                                <div className="form-check">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="status"
+                                        id="available"
+                                        value="Available"
+                                        checked={status === "Available"}
+                                        onChange={handleChange}
+                                    />
+                                    <label className="form-check-label m-0" htmlFor="available">
+                                        Available
+                                    </label>
+                                </div>
+                                <div className="form-check ms-3">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="status"
+                                        id="adopted"
+                                        value="Adopted"
+                                        checked={status === "Adopted"}
+                                        onChange={handleChange}
+                                    />
+                                    <label className="form-check-label m-0" htmlFor="adopted">
+                                        Adopted
+                                    </label>
+                                </div>
+                                <div className="form-check ms-3">
+                                    <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="status"
+                                        id="booked"
+                                        value="Booked"
+                                        checked={status === "Booked"}
+                                        onChange={handleChange}
+                                    />
+                                    <label className="form-check-label m-0" htmlFor="booked">
+                                        Booked
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <label htmlFor='photo' className='form-label'>
@@ -184,55 +240,8 @@ export default function AddPets() {
                         onChange={handleChange}
                         required
                     />
-                    <label htmlFor='status' className='form-label'>
-                        Adoption Status
-                    </label>
-                    <div className='d-flex'>
-                        <div className="form-check">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="status"
-                                id="available"
-                                value="Available"
-                                checked={status === "Available"}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label m-0" htmlFor="available">
-                                Available
-                            </label>
-                        </div>
-                        <div className="form-check ms-3">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="status"
-                                id="adopted"
-                                value="Adopted"
-                                checked={status === "Adopted"}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label m-0" htmlFor="adopted">
-                                Adopted
-                            </label>
-                        </div>
-                        <div className="form-check ms-3">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="status"
-                                id="booked"
-                                value="Booked"
-                                checked={status === "Booked"}
-                                onChange={handleChange}
-                            />
-                            <label className="form-check-label m-0" htmlFor="booked">
-                                Booked
-                            </label>
-                        </div>
-                    </div>
-                    <button type='submit' id='submitBtn' className='btn btn-success m-0 mt-4 w-100'>
-                        Add Pet
+                    <button type='submit' id='AddPetBtn' className='btn m-0 mt-4 w-100'>
+                        Add
                     </button>
                 </div>
             </form>

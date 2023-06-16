@@ -9,6 +9,9 @@ import Login from './Components/Login/Login';
 import AddPets from './Components/Add_Pets/AddPets';
 import Register from './Components/Register/Register';
 import ViewPet from './Components/ViewPet/ViewPet';
+import UpdatePet from './Components/UpdatePet/UpdatePet';
+import DeletePet from './Components/DeletePet/DeletePet';
+import ViewPets from './Components/Admin/ViewPets/ViewPets';
 
 function App() {
 
@@ -25,6 +28,9 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/viewpet' element={<ViewPet />} />
+          <Route path='/updatepet' element={<UpdatePet />} />
+          <Route path='/deletepet' element={<DeletePet />} />
+          <Route path='/admin/viewpets' element={<ViewPets />} />
         </Routes>
       </div>
     </BrowserRouter>
