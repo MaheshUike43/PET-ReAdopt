@@ -2,13 +2,48 @@ import mongoose from "mongoose";
 
 const requestSchema = new mongoose.Schema({
     pet_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Pet",
+        type: String,
+        required: true,
+    },
+    pet_name: {
+        type: String,
+        required: true,
+    },
+    breed: {
+        type: String,
+        required: true,
+    },
+    age: {
+        type: String,
+        required: true,
+    },
+    gender: {
+        type: String,
+        enum: ["Male", "Female"],
+        required: true,
+    },
+    photo: {
+        type: String,
         required: true,
     },
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    phone_number: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
         required: true,
     },
     request_date: {
@@ -18,8 +53,8 @@ const requestSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["pending", "approved", "rejected"],
-        default: "pending",
+        enum: ["Pending", "Approved", "Rejected"],
+        default: "Pending",
         required: true,
     },
 }, { timestamps: true });

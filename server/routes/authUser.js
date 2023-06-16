@@ -1,78 +1,69 @@
 import express from "express";
-import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import userModel from "../models/userModel.js";
 
-const authroute = express.Router()
+const authRoute = express.Router();
 
-//Register New
-authroute.post("/register", async (req, res) => {
+// Register New User
+authRoute.post("/register", async (req, res) => {
     try {
-        //Encrypt Password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const { name, email, password, cpassword, phone_number, address } = req.body;
 
-        const { name, email, password, phone_number, address } = req.body;
-
-        if (!name) {
-            return res.status(400).send({ success: false, message: "Please enter name" });
-        }
-        if (!email) {
-            return res.status(400).send({ success: false, message: "Please enter email" });
-        }
-        if (!password) {
-            return res.status(400).send({ success: false, message: "Please enter password" });
-        }
-        if (!phone_number) {
-            return res.status(400).send({ success: false, message: "Please enter number" });
-        }
-        if (!address) {
-            return res.status(400).send({ success: false, message: "Please enter address" });
-        }
-
-        //CHECK EMAIL
+        // Check if user already exists
         const existingUser = await userModel.findOne({ email });
         if (existingUser) {
-            return res.status(400).send({ success: false, message: "User is already registered" });
+            return res.status(400).json({ success: false, message: "User is Already Registered" });
+        } else if (password !== cpassword) {
+            return res.status(400).json({ success: false, message: "Password Not Match" });
+        } else {
+            // Encrypt Password
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+
+            // Create new user
+            const newUser = new userModel({
+                name,
+                email,
+                password: hashedPassword,
+                cpassword: hashedPassword,
+                phone_number,
+                address,
+            });
+            const user = await newUser.save();
+            res.status(200).json({ success: true, message: "User is Registered Successfully", user });
         }
 
-        //CREATE NEW USER
-        const newUser = new userModel({ name, email, password: hashedPassword, phone_number, address });
-        const user = await newUser.save();
-        res.status(200).send({ success: true, message: "User is registered successfully", user });
+
     } catch (error) {
         console.error(error);
-        res.status(500).send({ success: false, message: "Error creating user" });
+        res.status(500).json({ success: false, message: "Failed to Registerd" });
     }
-})
+});
 
-//Login
-authroute.post("/login", async (req, res) => {
+// Login User
+authRoute.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
     try {
-        const { email, password } = req.body;
-
-        if (!email) {
-            return res.status(400).send({ success: false, message: "Please enter email" });
-        }
-        if (!password) {
-            return res.status(400).send({ success: false, message: "Please enter password" });
-        }
-
         const user = await userModel.findOne({ email });
+
         if (!user) {
-            return res.status(401).send({ success: false, message: "Invalid Email" });
+            return res.status(401).json({ message: 'Invalid credentials' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
+
         if (!isMatch) {
-            return res.status(401).send({ success: false, message: "Invalid Password" });
+            return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        res.status(200).send({ success: true, message: "User is logged in successfully", user});
+        const token = await user.generateAuthToken();
+
+        res.json({ success: true, message: 'User Logged In Successfully', user });
     } catch (error) {
         console.error(error);
-        res.status(500).send({ success: false, message: "Error logging in user" });
+        res.status(500).json({ message: 'Error logging in. Please try again.' });
     }
-})
+});
 
-export default authroute;
-
+export default authRoute;

@@ -1,7 +1,30 @@
-.pets{
-    border-top: 2px solid black;
+#title{
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 1px;
 }
 
 .card{
-    min-height: 711px;
+    border: 2px solid #87a825;;
+}
+
+.pets{
+    border-top: 2px solid#87a825;
+}
+
+#pet-img{
+    height: 250px;
+}
+
+
+#btn-adopt, #btn-view, #btn-update{
+    background: #87a825;
+    border: 0;
+    color: white;
+}
+
+#btn-adopt:hover, #btn-view:hover, #btn-update:hover{
+    background: #87a825;
+    box-shadow: 1px 1px 3px black;
+    color: rgb(0, 0, 0);
+
 }

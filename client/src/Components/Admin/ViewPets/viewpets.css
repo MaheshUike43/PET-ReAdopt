@@ -1,0 +1,11 @@
+#viewpets-title{
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    font-size: 45px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.pet-img{
+    width: 50px;
+}
