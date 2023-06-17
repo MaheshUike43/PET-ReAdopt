@@ -30,7 +30,7 @@ export default function UpdatePet() {
             await axios.put(`http://localhost:5000/pet/update/${searchParams.get('petid')}`,
                 pet);
             alert('Updated Successfully');
-              navigate('/pets');
+              navigate('/admin/viewpets');
         } catch (error) {
             console.log(error);
         }

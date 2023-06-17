@@ -87,13 +87,6 @@ export default function Pets() {
                   >
                     VIEW
                   </button>
-                  <button
-                    id="btn-update"
-                    className="btn"
-                    onClick={() => navigate(`/updatepet?petid=${pet._id}`)}
-                  >
-                    UPDATE
-                  </button>
                 </div>
               </div>
             </div>

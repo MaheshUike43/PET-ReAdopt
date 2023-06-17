@@ -40,12 +40,8 @@ export default function Header() {
         <div className='col-lg-9 float-end'>
           <nav className="navbar navbar-expand-lg" id='menu'>
             <div className="navbar-nav">
-              <Link className="nav-link" to='/'>Home</Link>
               <Link className="nav-link" to='/pets'>Pets</Link>
-              <Link className="nav-link" to='/addpets'>Add Pets</Link>
-              <Link className="nav-link" to='/rescue'>Rescue</Link>
               <Link className="nav-link" to='/contact'>Contact</Link>
-              <Link className="nav-link" to='/admin/viewpets'>View Pets</Link>
               <button className='btn btn-dark' onClick={() => SignIn()}>
                 {isLoggedIn ? "Log Out" : "Log In"}
               </button>

@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import './viewpets.css'
-import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import '../ViewPets/viewpets.css';
 
 export default function ViewPets() {
-
+    const navigate = useNavigate();
     const [pets, setPets] = useState([]);
     const [selectedPetType, setSelectedPetType] = useState('');
 
@@ -20,22 +20,11 @@ export default function ViewPets() {
         };
 
         displayPetsDetails();
-    }, [pets]);
+    }, []);
 
-    const search = useLocation().search;
-    const searchParams = new URLSearchParams(search);
-
-    const deletePet = async (petid) => {
-        try {
-            await axios.delete(`http://localhost:5000/pet/delete/${searchParams.get('petid')}`);
-            alert("Pet Deleted")
-        } catch (error) {
-            
-        }
-    }
 
     // Filter pets based on the selected pet type
-    const filteredPets = selectedPetType ? pets.filter(pet => pet.pet_type === selectedPetType) : pets;
+    const filteredPets = selectedPetType ? pets.filter((pet) => pet.pet_type === selectedPetType) : pets;
 
     const handlePetTypeChange = (e) => {
         setSelectedPetType(e.target.value);
@@ -87,9 +76,27 @@ export default function ViewPets() {
                                     <td>{pet.status}</td>
                                     <td className=''>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-primary">View</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
-                                            <button type="button" class="btn btn-primary" onClick={()=> deletePet()}>Delete</button>
+                                        <button
+                    id="btn-adopt"
+                    className="btn ms-0"
+                    onClick={() => navigate(`/adopt?adoptpetid=${pet._id}`)}
+                  >
+                    ADOPT
+                  </button>
+                  <button
+                    id="btn-view"
+                    className="btn"
+                    onClick={() => navigate(`/viewpet?viewpetid=${pet._id}`)}
+                  >
+                    VIEW
+                  </button>
+                  <button
+                    id="btn-edit"
+                    className="btn"
+                    onClick={() => navigate(`/updatepet?petid=${pet._id}`)}
+                  >
+                    EDIT
+                  </button>
                                         </div>
                                     </td>
                                 </tr>

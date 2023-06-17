@@ -1,6 +1,7 @@
 import './App.css';
 import Adopt from './Components/Adopt/Adopt';
-import Header from './Components/Header/Header';
+import Admin from './Components/Admin/Header/Header';
+import User from './Components/User/Header/Header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Pets from './Components/Pets/Pets';
 import Home from './Components/Home/Home';
@@ -18,9 +19,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/admin' element={<Admin />} />
+          <Route path='/user' element={<User />} />
           <Route path='/pets' element={<Pets />} />
           <Route path='/addpets' element={<AddPets />} />
           <Route path='/adopt' element={<Adopt />} />

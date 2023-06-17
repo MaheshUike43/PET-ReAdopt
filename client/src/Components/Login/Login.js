@@ -26,12 +26,12 @@ export default function Login() {
         window.alert('Login Successful..!');
         // Store the user login details in local storage
         localStorage.setItem('user', JSON.stringify(response.data.user));
-  
+        
         // Check if the user is an admin
         if (response.data.user.isAdmin) {
-          navigate('/addpets'); // Redirect to the admin menu
+          navigate('/admin'); // Redirect to the admin menu
         } else {
-          navigate('/pets'); // Redirect to the user menu
+          navigate('/user'); // Redirect to the user menu
         }
       } else {
         window.alert('Invalid Credentials');
