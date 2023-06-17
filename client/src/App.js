@@ -1,18 +1,21 @@
 import './App.css';
-import Adopt from './Components/Adopt/Adopt';
-import Admin from './Components/Admin/Header/Header';
-import User from './Components/User/Header/Header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Pets from './Components/Pets/Pets';
-import Home from './Components/Home/Home';
-import Contact from './Components/Contact/Contact';
-import Login from './Components/Login/Login';
-import AddPets from './Components/Add_Pets/AddPets';
-import Register from './Components/Register/Register';
-import ViewPet from './Components/ViewPet/ViewPet';
-import UpdatePet from './Components/UpdatePet/UpdatePet';
-import DeletePet from './Components/DeletePet/DeletePet';
+
+import Admin from './Components/Admin/Header/Header';
+import AddPets from './Components/Admin/Add_Pets/AddPets';
 import ViewPets from './Components/Admin/ViewPets/ViewPets';
+import UpdatePet from './Components/Admin/UpdatePet/UpdatePet';
+
+import User from './Components/User/Header/Header';
+import Adopt from './Components/User/Adopt/Adopt';
+import Pets from './Components/User/Pets/Pets';
+import Contact from './Components/User/Contact/Contact';
+import ViewPet from './Components/User/ViewPet/ViewPet';
+
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
+import Register from './Components/Register/Register';
+import DeletePet from './Components/DeletePet/DeletePet';
 
 function App() {
 

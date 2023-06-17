@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../Add_Pets/addpets.css';
+import './addpets.css';
 import axios from 'axios';
-import fb from '../../firebase.js';
+import fb from '../../../firebase.js';
 
 export default function AddPets() {
     const [formData, setFormData] = useState({
