@@ -31,7 +31,7 @@ export default function UpdatePet() {
             await axios.put(`http://localhost:5000/pet/update/${searchParams.get('petid')}`,
                 pet);
             alert('Updated Successfully');
-              navigate('/admin/viewpets');
+            navigate('/admin/viewpets');
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +48,7 @@ export default function UpdatePet() {
     return (
         <div className="container" id='updatepetform'>
             <form className="row justify-content-center" onSubmit={updatePetDetails}>
-                <div className="update-pet-card">
+                <div className="" id='update-pet-card'>
                     <div className="" id="pet">
                         <h4 id='editpettitle'>Edit Pet Details</h4>
                         <input
@@ -64,7 +64,7 @@ export default function UpdatePet() {
                                 <img src={pet.photo} alt="..." className="img-fluid" id="pet-image" />
                             </div>
                             <div className='ms-3 col-lg-6'>
-                                <label htmlFor="pet_name" className="form-label">
+                                <label htmlFor="pet_name" className="form-label mt-0">
                                     Pet Name
                                 </label>
                                 <input
@@ -100,14 +100,36 @@ export default function UpdatePet() {
                                 <label htmlFor="gender" className="form-label">
                                     Gender
                                 </label>
-                                <input
-                                    type="text"
-                                    name="gender"
-                                    id="gender"
-                                    className="form-control"
-                                    value={pet.gender || ''}
-                                    onChange={handleInputChange}
-                                />
+                                <div className='d-flex'>
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="gender"
+                                            id='male'
+                                            value="Male"
+                                            checked={pet.gender === "Male"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label className="form-check-label m-0" htmlFor="male">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div className="form-check ms-3">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="gender"
+                                            id='female'
+                                            value="Female"
+                                            checked={pet.gender === "Female"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label className="form-check-label m-0" htmlFor="female">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
                                 <label htmlFor="desc" className="form-label">
                                     Description
                                 </label>
@@ -119,17 +141,53 @@ export default function UpdatePet() {
                                     value={pet.desc || ''}
                                     onChange={handleInputChange}
                                 />
-                                <label htmlFor="stauts" className="form-label">
+                                <label htmlFor="status" className="form-label">
                                     Status
                                 </label>
-                                <input
-                                    type="text"
-                                    name="status"
-                                    id="status"
-                                    className="form-control"
-                                    value={pet.status || ''}
-                                    onChange={handleInputChange}
-                                />
+                                <div className='d-flex'>
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="status"
+                                            id='available'
+                                            value="Available"
+                                            checked={pet.status === "Available"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label className="form-check-label m-0" htmlFor="available">
+                                            Available
+                                        </label>
+                                    </div>
+                                    <div className="form-check ms-3">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="status"
+                                            id='adopted'
+                                            value="Adopted"
+                                            checked={pet.status === "Adopted"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label className="form-check-label m-0" htmlFor="adopted">
+                                            Adopted
+                                        </label>
+                                    </div>
+                                    <div className="form-check ms-3">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="status"
+                                            id='booked'
+                                            value="Booked"
+                                            checked={pet.status === "Booked"}
+                                            onChange={handleInputChange}
+                                        />
+                                        <label className="form-check-label m-0" htmlFor="booked">
+                                            Booked
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

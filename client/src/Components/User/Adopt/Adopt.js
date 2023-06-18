@@ -58,7 +58,7 @@ export default function AddPets() {
   return (
     <div className=" container" id='adoptpetform'>
       <form className="row justify-content-center" onSubmit={handleSubmit}>
-        <div className='adopt-pet-card'>
+        <div className='' id='adopt-pet-card'>
           <h1 className='mb-4' id='ad-req-title' >Adoption Request Form</h1>
           <div className='mb-4' id='user'>
             <h4>Adopter</h4>

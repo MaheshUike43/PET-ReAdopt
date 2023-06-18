@@ -1,14 +1,8 @@
-#user, #pet{
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 6px;
-}
-
 #pet-image{
     width: 100%;
 }
 
 #adopt-pet-card{
-    width: 60%;
     background-color: rgba(135, 168, 37, 0.562);
     border-radius: 10px;
 }
