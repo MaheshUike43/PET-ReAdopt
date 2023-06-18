@@ -1,0 +1,22 @@
+#update-pet-card{
+    width: 60%;
+    background-color: rgba(135, 168, 37, 0.562);
+    border-radius: 10px;
+}
+
+#editpettitle{
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    font-size: 45px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+label{
+    margin-top: 10px;
+}
+
+#update-btn{
+    background: #312c26;
+    color: white;
+}

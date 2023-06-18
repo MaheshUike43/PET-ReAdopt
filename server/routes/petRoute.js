@@ -27,7 +27,9 @@ petRoute.get("/petsDetail/:id", async (req, res) => {
             // console.log(pet)
             res.status(200).send({ success: true, message: "Pet Found", pet });
         } else {
-            res.status(404).send({ success: false, message: "Pet Not Found" });
+            const error = new Error("Pet Not Found");
+            error.status = 404;
+            throw error;
         }
     } catch (error) {
         res.status(500).send({ success: false, message: "Internal Server Error" });
@@ -41,7 +43,9 @@ petRoute.get("/allPetsDetail", async (req, res) => {
         if (allpets) {
             res.status(200).send({ success: true, message: "Pet Found", allpets });
         } else {
-            res.status(404).send({ success: false, message: "Pet Not Found" });
+            const error = new Error("Pet Not Found");
+            error.status = 404;
+            throw error;
         }
     } catch (error) {
         res.status(500).send({ success: false, message: "Internal Server Error" });
@@ -50,33 +54,37 @@ petRoute.get("/allPetsDetail", async (req, res) => {
 
 //update Pets
 petRoute.put("/pet/update/:id", async (req, res) => {
-    if (req.body._id === req.params.id) {
+    const pet = await petsModel.findById(req.params.id);
+    if (pet) {
         try {
             const updatePet = await petsModel.findByIdAndUpdate(req.params.id, {
                 $set: req.body,
             });
-            // console.log(updatePet)
+
             res.status(200).send({ success: true, message: "Pet is updated successfully", updatePet });
         } catch (error) {
-            res.status(500).send({ success: false, message: "Pet Not Found" });
+            res.status(500).send({ success: false, message: "Error Updating pet" });
         }
     } else {
-        res.status(403).send({ success: false, message: "Internal Server Error" });
+        const error = new Error("Pet Not Found");
+        error.status = 404;
+        throw error;
     }
 })
 
-//update Pets
+//delete Pets
 petRoute.delete("/pet/delete/:id", async (req, res) => {
-    if (req.body._id === req.params.id) {
-        try {
-            const deletePet = await petsModel.findByIdAndDelete(req.params.id)
-            res.status(200).send({ success: true, message: "Pet is deleted successfully", deletePet });
-        } catch (error) {
-            res.status(500).send({ success: false, message: "Pet Not Found" });
+    try {
+        const pet = await petsModel.findById(req.params.id);
+        if (!pet) {
+            return res.status(404).send({ success: false, message: "Pet Not Found" });
         }
-    } else {
-        res.status(403).send({ success: false, message: "Internal Server Error" });
+        const delPet = await petsModel.findByIdAndDelete(req.params.id);
+        res.status(200).send({ success: true, message: "Pet is deleted successfully", delPet });
+    } catch (error) {
+        res.status(500).send({ success: false, message: "Internal Server Error" });
     }
-})
+});
+
 
 export default petRoute;

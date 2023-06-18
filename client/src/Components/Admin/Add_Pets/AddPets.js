@@ -67,9 +67,9 @@ export default function AddPets() {
     };
 
     return (
-        <div className="addpetform container">
+        <div className="container" id='addpetform'>
             <form className='row justify-content-center' onSubmit={handleSubmit}>
-                <div className='box2'>
+                <div className='' id='add-pet-card'>
                     <h1 id='newpettitle'>Add New Pets</h1>
                     <div className='d-flex'>
                         <div className="col-lg-6">

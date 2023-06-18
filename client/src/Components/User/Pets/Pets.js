@@ -31,8 +31,8 @@ export default function Pets() {
   };
 
   return (
-    <div className="pets container">
-      <h1 className="pt-4 fw-bolder text-center" id="title">
+    <div className="container" id='pets'>
+      <h1 className="pt-4 fw-bolder text-center" id='title'>
         Pets for Adoption
       </h1>
       <div className="filter-container">
@@ -72,21 +72,9 @@ export default function Pets() {
                 <p className="card-text">
                   <b>Status: </b> {pet.status}
                 </p>
-                <div className="d-flex">
-                  <button
-                    id="btn-adopt"
-                    className="btn ms-0"
-                    onClick={() => navigate(`/adopt?adoptpetid=${pet._id}`)}
-                  >
-                    ADOPT
-                  </button>
-                  <button
-                    id="btn-view"
-                    className="btn"
-                    onClick={() => navigate(`/viewpet?viewpetid=${pet._id}`)}
-                  >
-                    VIEW
-                  </button>
+                <div className="d-flex justify-content-between">
+                  <button id="btn-adopt" className="btn ms-0" onClick={() => navigate(`/user/adopt?petid=${pet._id}`)}>ADOPT</button>
+                  <button id="btn-view" className="btn" onClick={() => navigate(`/user/petprofile?petid=${pet._id}`)} > VIEW </button>
                 </div>
               </div>
             </div>

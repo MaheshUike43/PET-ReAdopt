@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import '../ViewPets/viewpets.css';
 
 export default function ViewPets() {
@@ -13,7 +13,8 @@ export default function ViewPets() {
             try {
                 const response = await axios.get("http://localhost:5000/allPetsDetail");
                 const petsData = response.data.allpets;
-                setPets(petsData); // Update the state with the fetched pets data
+                setPets(petsData);
+                console.log(petsData) // Update the state with the fetched pets data
             } catch (error) {
                 console.error(error);
             }
@@ -22,6 +23,19 @@ export default function ViewPets() {
         displayPetsDetails();
     }, []);
 
+    const deletePet = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5000/pet/delete/${id}`);
+            alert("Deleted");
+            // Get the latest list of pets from the api
+            const response = await axios.get("http://localhost:5000/allPetsDetail");
+            const petsData = response.data.allpets;
+            setPets(petsData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
 
     // Filter pets based on the selected pet type
     const filteredPets = selectedPetType ? pets.filter((pet) => pet.pet_type === selectedPetType) : pets;
@@ -52,7 +66,7 @@ export default function ViewPets() {
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <table class="table table-bordered border-dark mt-5">
+                <table className="table table-bordered border-dark mt-5">
                     <thead>
                         <tr className='text-center'>
                             <th scope="col">#</th>
@@ -75,28 +89,10 @@ export default function ViewPets() {
                                     <td>{pet.age}</td>
                                     <td>{pet.status}</td>
                                     <td className=''>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button
-                    id="btn-adopt"
-                    className="btn ms-0"
-                    onClick={() => navigate(`/adopt?adoptpetid=${pet._id}`)}
-                  >
-                    ADOPT
-                  </button>
-                  <button
-                    id="btn-view"
-                    className="btn"
-                    onClick={() => navigate(`/viewpet?viewpetid=${pet._id}`)}
-                  >
-                    VIEW
-                  </button>
-                  <button
-                    id="btn-edit"
-                    className="btn"
-                    onClick={() => navigate(`/updatepet?petid=${pet._id}`)}
-                  >
-                    EDIT
-                  </button>
+                                        <div className="btn-group" role="group" aria-label="Basic example">
+                                            <button id="btn-ad-view" className="btn" onClick={() => navigate(`/user/petprofile?petid=${pet._id}`)}>VIEW</button>
+                                            <button id="btn-ad-edit" className="btn" onClick={() => navigate(`/admin/updatepet?petid=${pet._id}`)}>EDIT</button>
+                                            <button id="btn-ad-delete" className="btn" onClick={() => deletePet(pet._id)}>DELETE</button>
                                         </div>
                                     </td>
                                 </tr>

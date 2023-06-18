@@ -34,9 +34,9 @@ export default function Header() {
   return (
     <div className='header container'>
       <div className='row'>
-        <Link className='col-lg-3' to='/'>
+        <div className='col-lg-3'>
           <img className='img-fluid m-0' id='logo-img' src={logo} alt="..." />
-        </Link>
+        </div>
         <div className='col-lg-9 float-end'>
           <nav className="navbar navbar-expand-lg" id='menu'>
             <div className="navbar-nav">

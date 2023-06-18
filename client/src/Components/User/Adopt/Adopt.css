@@ -1,9 +1,31 @@
 #user, #pet{
     border: 2px solid rgb(255, 255, 255);
     border-radius: 6px;
-    padding: 20px;
 }
 
 #pet-image{
     width: 100%;
+}
+
+#adopt-pet-card{
+    width: 60%;
+    background-color: rgba(135, 168, 37, 0.562);
+    border-radius: 10px;
+}
+
+#ad-req-title{
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    font-size: 45px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+label{
+    margin-top: 10px;
+}
+
+#req-btn{
+    background: #312c26;
+    color: white;
 }

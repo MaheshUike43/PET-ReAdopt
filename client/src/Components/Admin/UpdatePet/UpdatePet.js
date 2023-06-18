@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
+import './updatepet.css'
 
 export default function UpdatePet() {
     const [pet, setPet] = useState({});
@@ -45,11 +46,11 @@ export default function UpdatePet() {
     };
 
     return (
-        <div className="mt-1 addpetform abs container">
+        <div className="container" id='updatepetform'>
             <form className="row justify-content-center" onSubmit={updatePetDetails}>
-                <div className="box2">
+                <div className="update-pet-card">
                     <div className="" id="pet">
-                        <h4>Pet Details</h4>
+                        <h4 id='editpettitle'>Edit Pet Details</h4>
                         <input
                             type="text"
                             name="_id"
@@ -132,7 +133,7 @@ export default function UpdatePet() {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary w-100 ms-0">
+                    <button type="submit" id='update-btn' className="btn btn-primary w-100 ms-0">
                         Update Pet Details
                     </button>
                 </div>

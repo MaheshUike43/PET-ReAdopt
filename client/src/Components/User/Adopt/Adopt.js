@@ -38,7 +38,7 @@ export default function AddPets() {
     const petDetails = async () => {
       try {
         const fetchPet = await axios.get(
-          `http://localhost:5000/petsDetail/${searchParams.get('adoptpetid')}`
+          `http://localhost:5000/petsDetail/${searchParams.get('petid')}`
         );
         setPet(fetchPet.data.pet);
 
@@ -56,10 +56,10 @@ export default function AddPets() {
   }, []);
 
   return (
-    <div className="mt-1 addpetform abs container">
+    <div className=" container" id='adoptpetform'>
       <form className="row justify-content-center" onSubmit={handleSubmit}>
-        <div className='box2'>
-          <h1 className='mb-4' >Adoption Request Form</h1>
+        <div className='adopt-pet-card'>
+          <h1 className='mb-4' id='ad-req-title' >Adoption Request Form</h1>
           <div className='mb-4' id='user'>
             <h4>Adopter</h4>
             <input
@@ -119,7 +119,7 @@ export default function AddPets() {
               disabled
             />
           </div>
-          <div className='' id='pet'>
+          <div className='' id='adopt-pet'>
             <h4>Pet Details</h4>
             <input
               type='text'
@@ -181,8 +181,8 @@ export default function AddPets() {
               disabled
             />
           </div>
-          <button type='submit' id='submitBtn' className='btn btn-success m-0 mt-4 w-100'>
-            Submit
+          <button type='submit' id='req-btn' className='btn btn-success m-0 mt-4 w-100'>
+            Submit Request
           </button>
         </div>
         </form>

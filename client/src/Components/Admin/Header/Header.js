@@ -34,14 +34,14 @@ export default function Header() {
   return (
     <div className='header container'>
       <div className='row'>
-        <Link className='col-lg-3' to='/'>
+        <div className='col-lg-3'>
           <img className='img-fluid m-0' id='logo-img' src={logo} alt="..." />
-        </Link>
+        </div>
         <div className='col-lg-9 float-end'>
           <nav className="navbar navbar-expand-lg" id='menu'>
             <div className="navbar-nav">
               <Link className="nav-link" to='/admin/viewpets'>View Pets</Link>
-              <Link className="nav-link" to='/addpets'>Add Pets</Link>
+              <Link className="nav-link" to='/admin/addpets'>Add Pets</Link>
               <button className='btn btn-dark' onClick={() => SignIn()}>
                 {isLoggedIn ? "Log Out" : "Log In"}
               </button>

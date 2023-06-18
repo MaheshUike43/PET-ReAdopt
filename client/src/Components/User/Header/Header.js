@@ -5,11 +5,14 @@ import logo from './pet-logo.png'
 
 export default function Header() {
 
+
+
   let navigate = useNavigate();
 
   const [isLoggedIn, SetLoggedIn] = useState(false);
 
-  const checkedLogin = () => {
+  const checkedLogin = async () => {
+
     const userLogged = localStorage.getItem("user");
     if (userLogged) {
       SetLoggedIn(true);
@@ -34,14 +37,14 @@ export default function Header() {
   return (
     <div className='header container'>
       <div className='row'>
-        <Link className='col-lg-3' to='/'>
+        <div className='col-lg-3'>
           <img className='img-fluid m-0' id='logo-img' src={logo} alt="..." />
-        </Link>
+        </div>
         <div className='col-lg-9 float-end'>
           <nav className="navbar navbar-expand-lg" id='menu'>
             <div className="navbar-nav">
-              <Link className="nav-link" to='/pets'>Pets</Link>
-              <Link className="nav-link" to='/contact'>Contact</Link>
+              <Link className="nav-link" to='/user/pets'>Pets</Link>
+              <Link className="nav-link" to='/user/contact'>Contact</Link>
               <button className='btn btn-dark' onClick={() => SignIn()}>
                 {isLoggedIn ? "Log Out" : "Log In"}
               </button>
