@@ -1,9 +1,0 @@
-#user, #pet{
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 6px;
-    padding: 20px;
-}
-
-#pet-image{
-    width: 100%;
-}

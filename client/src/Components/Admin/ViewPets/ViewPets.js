@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import './viewpets.css'
-import { useLocation } from 'react-router';
+import {  useNavigate } from 'react-router-dom';
+import '../ViewPets/viewpets.css';
 
 export default function ViewPets() {
-
+    const navigate = useNavigate();
     const [pets, setPets] = useState([]);
     const [selectedPetType, setSelectedPetType] = useState('');
 
@@ -13,29 +13,32 @@ export default function ViewPets() {
             try {
                 const response = await axios.get("http://localhost:5000/allPetsDetail");
                 const petsData = response.data.allpets;
-                setPets(petsData); // Update the state with the fetched pets data
+                setPets(petsData);
+                console.log(petsData) // Update the state with the fetched pets data
             } catch (error) {
                 console.error(error);
             }
         };
 
         displayPetsDetails();
-    }, [pets]);
+    }, []);
 
-    const search = useLocation().search;
-    const searchParams = new URLSearchParams(search);
-
-    const deletePet = async (petid) => {
+    const deletePet = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/pet/delete/${searchParams.get('petid')}`);
-            alert("Pet Deleted")
+            await axios.delete(`http://localhost:5000/pet/delete/${id}`);
+            alert("Deleted");
+            // Get the latest list of pets from the api
+            const response = await axios.get("http://localhost:5000/allPetsDetail");
+            const petsData = response.data.allpets;
+            setPets(petsData);
         } catch (error) {
-            
+            console.error(error);
         }
-    }
+    };
+    
 
     // Filter pets based on the selected pet type
-    const filteredPets = selectedPetType ? pets.filter(pet => pet.pet_type === selectedPetType) : pets;
+    const filteredPets = selectedPetType ? pets.filter((pet) => pet.pet_type === selectedPetType) : pets;
 
     const handlePetTypeChange = (e) => {
         setSelectedPetType(e.target.value);
@@ -63,7 +66,7 @@ export default function ViewPets() {
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <table class="table table-bordered border-dark mt-5">
+                <table className="table table-bordered border-dark mt-5">
                     <thead>
                         <tr className='text-center'>
                             <th scope="col">#</th>
@@ -86,10 +89,10 @@ export default function ViewPets() {
                                     <td>{pet.age}</td>
                                     <td>{pet.status}</td>
                                     <td className=''>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-primary">View</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
-                                            <button type="button" class="btn btn-primary" onClick={()=> deletePet()}>Delete</button>
+                                        <div className="btn-group" role="group" aria-label="Basic example">
+                                            <button id="btn-ad-view" className="btn" onClick={() => navigate(`/user/petprofile?petid=${pet._id}`)}>VIEW</button>
+                                            <button id="btn-ad-edit" className="btn" onClick={() => navigate(`/admin/updatepet?petid=${pet._id}`)}>EDIT</button>
+                                            <button id="btn-ad-delete" className="btn" onClick={() => deletePet(pet._id)}>DELETE</button>
                                         </div>
                                     </td>
                                 </tr>

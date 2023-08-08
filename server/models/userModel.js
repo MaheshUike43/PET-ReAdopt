@@ -41,24 +41,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    tokens: {
-      type: Array,
-      required: false,
-    },
+    
   },
   { timestamps: true }
 );
 
-userSchema.methods.generateAuthToken = async function () {
-  try {
-    const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-    this.tokens.push({ token });
-    await this.save();
-    return token;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Error generating authentication token');
-  }
-};
 
 export default mongoose.model("Users", userSchema);

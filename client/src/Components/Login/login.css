@@ -1,15 +1,14 @@
 
 
 .box{
-    width: 40%;
+    margin: 116px 0px;
+    width: 500px;
     background-color: rgba(135, 168, 37, 0.562);
     padding: 25px;
-    margin-top: 25px;
-    margin-bottom: 50px;
     border-radius: 10px;
 }
 
-#newpettitle{
+.login-title{
     font-family: 'DM Serif Display', serif;
     font-weight: bolder;
     font-size: 45px;
