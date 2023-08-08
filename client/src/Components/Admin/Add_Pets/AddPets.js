@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './addpets.css';
 import axios from 'axios';
 import fb from '../../../firebase.js';
+import Header from '../Header/AdminHeader';
 
 export default function AddPets() {
     const [formData, setFormData] = useState({
@@ -44,7 +45,11 @@ export default function AddPets() {
                 photo: imageUrl,
             };
 
-            await axios.post('http://localhost:5000/pets', petData);
+            await axios.post('http://localhost:5000/pets', petData, {
+                headers: {
+                    token: "Bearer " + JSON.parse(localStorage.getItem("user")).accesstoken
+                }
+            });
 
             setFormData({
                 pet_type: '',
@@ -69,6 +74,7 @@ export default function AddPets() {
     return (
         <div className="container" id='addpetform'>
             <form className='row justify-content-center' onSubmit={handleSubmit}>
+            <Header />
                 <div className='' id='add-pet-card'>
                     <h1 id='newpettitle'>Add New Pets</h1>
                     <div className='d-flex'>

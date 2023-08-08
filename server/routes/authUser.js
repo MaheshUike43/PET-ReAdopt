@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import userModel from "../models/userModel.js";
+import jwt from 'jsonwebtoken';
 
 const authRoute = express.Router();
 
@@ -42,24 +43,33 @@ authRoute.post("/register", async (req, res) => {
 
 // Login User
 authRoute.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-
     try {
-        const user = await userModel.findOne({ email });
+        // const { email, password } = req.body;
+        const user = await userModel.findOne({ email: req.body.email });
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
 
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const token = await user.generateAuthToken();
+        const accesstoken = jwt.sign(
+            {id: user._id, isAdmin: user.isAdmin},
+            process.env.MY_KEY,
+            {expiresIn: "5d"}
+        );
 
-        res.json({ success: true, message: 'User Logged In Successfully', user });
+        const {password, ...info} = user._doc;
+
+        res.status(200).json({...info, accesstoken});
+
+        // const token = await user.generateAuthToken();
+
+        // res.json({ success: true, message: 'User Logged In Successfully', user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error logging in. Please try again.' });

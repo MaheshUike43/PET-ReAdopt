@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Login/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { login } from '../../context/authContext/authApiCalls'
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,37 +14,13 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-
+  const {isFetching, dispatch} = useContext(AuthContext)
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    login({email,password},dispatch);
+  }
   
-    try {
-      const response = await axios.post('http://localhost:5000/login', {
-        email,
-        password,
-      });
-  
-      if (response.data.success) {
-        window.alert('Login Successful..!');
-        // Store the user login details in local storage
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        
-        // Check if the user is an admin
-        if (response.data.user.isAdmin) {
-          navigate('/admin'); // Redirect to the admin menu
-        } else {
-          navigate('/user'); // Redirect to the user menu
-        }
-      } else {
-        window.alert('Invalid Credentials');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Error logging in. Please try again.');
-    }
-  };
-  
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

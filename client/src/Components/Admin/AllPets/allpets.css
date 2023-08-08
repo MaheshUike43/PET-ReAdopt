@@ -1,0 +1,24 @@
+#viewpets-title{
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    font-size: 45px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.pet-img{
+    width: 50px;
+}
+
+#btn-ad-view, #btn-ad-edit,#btn-ad-delete{
+    background: #87a825;
+    border: 0;
+    color: white;
+}
+
+#btn-ad-view:hover, #btn-ad-edit:hover, #btn-ad-delete:hover{
+    background: #87a825;
+    box-shadow: 1px 1px 3px black;
+    color: rgb(0, 0, 0);
+
+}

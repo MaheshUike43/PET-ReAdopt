@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './updatepet.css'
+import Header from '../Header/AdminHeader';
 
 export default function UpdatePet() {
     const [pet, setPet] = useState({});
@@ -28,10 +29,14 @@ export default function UpdatePet() {
         e.preventDefault();
 
         try {
-            await axios.put(`http://localhost:5000/pet/update/${searchParams.get('petid')}`,
-                pet);
+            await axios.put("http://localhost:5000/pet/update/" + searchParams.get("petid"),
+                pet, {
+                headers: {
+                    token: "Bearer " + JSON.parse(localStorage.getItem("user")).accesstoken
+                }
+            });
             alert('Updated Successfully');
-            navigate('/admin/viewpets');
+            navigate('/admin/allpets');
         } catch (error) {
             console.log(error);
         }
@@ -47,6 +52,7 @@ export default function UpdatePet() {
 
     return (
         <div className="container" id='updatepetform'>
+            <Header />
             <form className="row justify-content-center" onSubmit={updatePetDetails}>
                 <div className="" id='update-pet-card'>
                     <div className="" id="pet">
@@ -58,6 +64,7 @@ export default function UpdatePet() {
                             value={pet._id || ''}
                             required
                             hidden
+                            disabled
                         />
                         <div className='d-flex'>
                             <div className='clo-lg-6'>

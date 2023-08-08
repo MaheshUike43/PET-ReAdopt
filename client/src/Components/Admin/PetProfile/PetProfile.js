@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './petprofile.css'
 import { useLocation } from 'react-router'
 import axios from 'axios';
-import Header from '../Header/UserHeader';
+import Header from '../Header/AdminHeader';
 
 export default function PetProfile() {
     const [pet, setPet] = useState([]);
@@ -24,9 +24,9 @@ export default function PetProfile() {
     return (
         <div className="container" id='pet-profile'>
             <div className="row justify-content-center">
-                <Header/>
+            <Header />
                 <h4 id='pet-info-title' >About <span id='petname'>{pet.pet_name}</span></h4>
-                <div className='col-lg-12' id='pet-card'>
+                <div className='col-lg-12 card' id='pet-card'>
                     <h6 className='visually-hidden'>{pet._id}</h6>
                     <img src={pet.photo} alt="..." className='img-fluid' id='pet-image' />
                     <h5>Pet Name: {pet.pet_name}</h5>

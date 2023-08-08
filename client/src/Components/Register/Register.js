@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+// import { useNavigate } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function Register() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  // const navigate = useNavigate();
   const navigate = useNavigate();
 
   const { name, email, password, cpassword, phone_number, address } = formData;
@@ -43,6 +45,7 @@ export default function Register() {
         address: ''
       });
       alert('User Registration Successful');
+      // navigate('/login')
       navigate('/login')
     } catch (error) {
       alert('Email already registered');

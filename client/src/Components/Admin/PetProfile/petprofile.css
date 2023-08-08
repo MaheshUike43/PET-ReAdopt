@@ -1,24 +1,26 @@
-#add-pet-card{
-    width: 60%;
-    margin: 25px 0px;
+#pet-profile{
+    height: 100vh;
+}
+
+#pet-card{
+    width: 40%;
     padding: 25px;
     background-color: rgba(135, 168, 37, 0.562);
     border-radius: 10px;
 }
 
-#newpettitle{
+#pet-info-title{
     font-family: 'DM Serif Display', serif;
     font-weight: bolder;
-    font-size: 45px;
+    font-size: 30px;
     letter-spacing: 1px;
     text-align: center;
 }
 
-label{
-    margin-top: 10px;
+#petname{
+    color: #87A825;
 }
 
-#AddPetBtn{
-    background: #312c26;
-    color: white;
+#pet-profile h5{
+    margin-top: 25px;
 }

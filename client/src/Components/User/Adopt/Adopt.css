@@ -1,8 +1,11 @@
 #pet-image{
-    width: 100%;
+    width: 500px;
 }
 
 #adopt-pet-card{
+    width: 80%;
+    margin: 30px 0px;
+    padding: 25px;
     background-color: rgba(135, 168, 37, 0.562);
     border-radius: 10px;
 }
